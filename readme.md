@@ -2,7 +2,7 @@
 
 ### Special thanks to my professor, Rouben Meschian, for answer my questions promptly and helping me throughout this project.
 ###  Hooman Hesamyan.
-
+### And, all team members.
 ----
 
 List of JavaScript files and their responsibilities:
