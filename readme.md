@@ -7,7 +7,7 @@
 
 List of JavaScript files and their responsibilities:
 
-- `chessBoard.js`: Its duty is draw the empty Chess board as a second background over the main background.
+- `chessBoard.js`: Its duty is to draw the empty Chess board as a second background over the main background.
 - `chessData.js`: Its duty is to gather all essential and primitive global data of the game.
 - `chessMoveMaker.js`: Its duty is to track user activities and after some primitive controls affect to the current board arrangement.
 
