@@ -73,6 +73,7 @@ var overAllPause = false;
 var firstTimePushstart = true;
 var transferee, killedPiece;
 var departPose, arrivePose;
+var extendedTime = 0;
 /***************************************************/
 const canvas = document.getElementById("chessBoard");
 const canvas2 = document.getElementById("showCase");

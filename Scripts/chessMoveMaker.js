@@ -42,6 +42,7 @@ const castling = function (transferee, departPose, arrivePose) {
                     }
                 }
                 if (game.board[0][7] === 'lr') {
+                    extendedTime = 400;
                     rivisor('lr', [0, 7], [0, 4]);
                     MoveAnimator.chessPieces(game.boardSize, game.padding, game.board);
                 }
@@ -53,6 +54,7 @@ const castling = function (transferee, departPose, arrivePose) {
                     }
                 }
                 if (game.board[0][0] === 'lr') {
+                    extendedTime = 400;
                     rivisor('lr', [0, 0], [0, 2]);
                     MoveAnimator.chessPieces(game.boardSize, game.padding, game.board);
                 }
@@ -67,6 +69,7 @@ const castling = function (transferee, departPose, arrivePose) {
                     }
                 }
                 if (game.board[7][0] === 'dr') {
+                    extendedTime = 400;
                     rivisor('dr', [7, 7], [7, 4]);
                     MoveAnimator.chessPieces(game.boardSize, game.padding, game.board);
                 }
@@ -78,6 +81,7 @@ const castling = function (transferee, departPose, arrivePose) {
                     }
                 }
                 if (game.board[7][0] === 'dr') {
+                    extendedTime = 400;
                     rivisor('dr', [7, 0], [7, 2]);
                     MoveAnimator.chessPieces(game.boardSize, game.padding, game.board);
                 }
@@ -87,6 +91,9 @@ const castling = function (transferee, departPose, arrivePose) {
 }
 //
 const promotion = function (transferee, departPose, arrivePose) {
+    if (error) {
+        return;
+    }
     const rivisor = function(transferee, departPose, arrivePose) {
         var revisedBoard = utility.deepClone(game.board);
         const _transferee = transferee;
@@ -98,11 +105,13 @@ const promotion = function (transferee, departPose, arrivePose) {
     }
     if (transferee === 'lp' && arrivePose[0] === 7) {
         rivisor('lq', arrivePose, arrivePose);
-        MoveAnimator.chessPieces(game.boardSize, game.padding, game.board);
+        setTimeout(function(){MoveAnimator.chessPieces(game.boardSize, game.padding, game.board);}, 1600);
+
     }
     if (transferee === 'dp' && arrivePose[0] === 0) {
         rivisor('dq', arrivePose, arrivePose);
-        MoveAnimator.chessPieces(game.boardSize, game.padding, game.board);
+        setTimeout(function(){MoveAnimator.chessPieces(game.boardSize, game.padding, game.board);}, 1600);
+
     }
 }
 //
@@ -135,7 +144,7 @@ const rivisorBoard = function(transferee, departPose, arrivePose, killedPiece) {
     const _departPose = departPose;
     const _arrivePose = arrivePose;
     const _killedPiece = killedPiece;
-
+    // To control which side's turn is and avoid to do game consequently.
     if (!(transferee[0] === 'l' && !pauseDark) && !(transferee[0] === 'd' && !pauseLight)) {
         pauseDark = !pauseDark;
         pauseLight = !pauseLight;
@@ -144,16 +153,19 @@ const rivisorBoard = function(transferee, departPose, arrivePose, killedPiece) {
         setTimeout(function() {error = !error;}, 1000)
         return;
     }
+    // To let user to cancel the first choosed piece by selecting again.
     if (_departPose[0] === _arrivePose[0] && _departPose[1] === _arrivePose[1]) {
         pauseDark = !pauseDark;
         pauseLight = !pauseLight;
         return;
     }
+    // To avoid starting game before starting the counteres.
     if (!start) {
         pauseDark = !pauseDark;
         pauseLight = !pauseLight;
         return;
     }
+    // To avoid invalid movement which each side kill the same side.
     if (_transferee[0] === _killedPiece[0] ) {
         pauseDark = !pauseDark;
         pauseLight = !pauseLight;
@@ -194,8 +206,10 @@ canvas.addEventListener('click', function(evt) {
                 reSelect(ii, jj);
                 castling(transferee, departPose, arrivePose);
                 rivisorBoard(transferee, departPose, arrivePose, killedPiece);
+
+                setTimeout(function(){MoveAnimator.chessPieces(game.boardSize, game.padding, game.board);}, (200+extendedTime));
                 promotion(transferee, departPose, arrivePose);
-                setTimeout(function(){MoveAnimator.chessPieces(game.boardSize, game.padding, game.board);}, 200);
+                extendedTime = 0;
             }
         });
     }
