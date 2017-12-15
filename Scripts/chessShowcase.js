@@ -42,8 +42,8 @@ const timerBoxDark = function () {
 }
 //
 const timerBoxLight = function () {
-    ctx2.fillStyle = "#D8D8F6";
-    ctx2.strokeStyle = "#D8D8F6";//A2B5C6
+    ctx2.fillStyle =  "rgba(161, 163, 162, 0.4)";
+    ctx2.strokeStyle =  "rgba(161, 163, 162, 0.4)";//A2B5C6
     ctx2.clearRect(game.boardSize/2+game.padding/4, game.boardSize/10*3+game.padding/4, game.boardSize/2-game.padding, game.boardSize/10-game.padding);
     ctx2.fillRect(game.boardSize/2+game.padding/4, game.boardSize/10*3+game.padding/4, game.boardSize/2-game.padding, game.boardSize/10-game.padding);
 }

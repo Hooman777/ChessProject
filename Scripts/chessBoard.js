@@ -6,7 +6,7 @@ const chessBoard = function () {
             ctx.lineTo(0, i * (canvas.height / 8));
             ctx.lineTo(canvas.width, i * (canvas.height / 8));
             ctx.lineWidth = 3;
-            ctx.lineStyle = "#494850";
+            ctx.lineStyle = "rgba(73, 71, 82, 0.3)";
             ctx.stroke();
         }
         for (var i = 0; i <= 8; i++) {
@@ -21,7 +21,7 @@ const chessBoard = function () {
             if (i % 2) {
                 for (var j = 0; j < 8; j += 2) {
                     ctx.rect(j * (canvas.width / 8), i * (canvas.height / 8), (canvas.width / 8), (canvas.height / 8));
-                    ctx.fillStyle = "#494850";
+                    ctx.fillStyle = "rgba(73, 71, 82, 0.3)";
                     ctx.fill();
                 }
             } else {
