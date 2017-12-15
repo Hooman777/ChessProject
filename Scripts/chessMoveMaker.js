@@ -144,13 +144,20 @@ const rivisorBoard = function(transferee, departPose, arrivePose, killedPiece) {
     const _departPose = departPose;
     const _arrivePose = arrivePose;
     const _killedPiece = killedPiece;
+	// To avoid picking void space in the board.
+    if (transferee === '  ') {
+        pauseDark = !pauseDark;
+        pauseLight = !pauseLight;
+        not.play();
+        return;
+    }
     // To control which side's turn is and avoid to do game consequently.
     if (!(transferee[0] === 'l' && !pauseDark) && !(transferee[0] === 'd' && !pauseLight)) {
         pauseDark = !pauseDark;
         pauseLight = !pauseLight;
         not.play();
         error = !error;
-        setTimeout(function() {error = !error;}, 1000)
+        setTimeout(function() {error = !error;}, 1500)
         return;
     }
     // To let user to cancel the first choosed piece by selecting again.
