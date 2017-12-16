@@ -20,8 +20,8 @@ const chessBoard = function () {
         for (var i = 0; i < 8; i++) {
             if (i % 2) {
                 for (var j = 0; j < 8; j += 2) {
-                    ctx.rect(j * (canvas.width / 8), i * (canvas.height / 8), (canvas.width / 8), (canvas.height / 8));
                     ctx.fillStyle = "rgba(73, 71, 82, 0.3)";
+                    ctx.rect(j * (canvas.width / 8), i * (canvas.height / 8), (canvas.width / 8), (canvas.height / 8));
                     ctx.fill();
                 }
             } else {
